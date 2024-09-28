@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
   Card,
@@ -10,6 +11,7 @@ import {
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 interface CaseCardProps{
     
@@ -24,8 +26,9 @@ interface CaseCardProps{
 
 
 export function CaseCard({caseName,caseNo,status,regdate,client,category}:CaseCardProps) {
+    const router=useRouter()
   return (
-    <Card className="w-96 max-w-full h-full flex flex-col justify-between border-none shadow-none">
+    <Card className="w-96 max-w-full h-full flex flex-col justify-between border-none shadow-none" onClick={()=>router.push("/cases/2024-CV-00789")}>
       <CardHeader className="pb-2">
         <div className="flex justify-between items-center">
           <span className="text-sm font-semibold text-gray-500">{caseNo}</span>
