@@ -1,23 +1,17 @@
-import {
-  Menu,
-  NotebookText,
-  Package2,
-  Search
-} from "lucide-react";
+"use client";
+import { Menu, NotebookText, Package2, Search } from "lucide-react";
 import Link from "next/link";
 
 import { CaseCard } from "@/components/custom-components";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { legalCasesData } from "../helper/data";
+import { legalCasesData } from "@/helper/data";
+import { useParams, useRouter } from "next/navigation";
 
-export const description =
-  "A products dashboard with a sidebar navigation and a main content area. The dashboard has a header with a search input and a user menu. The sidebar has a logo, navigation links, and a card with a call to action. The main content area shows an empty state with a call to action.";
-
-export default function Dashboard() {
+export default function CaseDetails({ params }: { params: { case: string } }) {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[218px_1fr]">
+    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[218px_1fr] bg-[#F3F5F8]">
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
@@ -71,54 +65,38 @@ export default function Dashboard() {
               </nav>
             </SheetContent>
           </Sheet>
-
-          {/* <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu> */}
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-          <div className="flex items-center justify-between ">
-            <h1 className="text-lg font-semibold md:text-2xl">Home page</h1>
-            {/* <div className="">
-              <form>
-                <div className="relative w-56">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="Search cases..."
-                    className=" appearance-none bg-background pl-8 shadow-none w-full "
-                  />
-                </div>
-              </form>
-            </div> */}
+          <div className="">
+            <h1 className="text-lg font-semibold md:text-2xl">{params.case}</h1>
+            <span className="text-sm font-semibold text-gray-500">caseNo</span>
           </div>
 
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {legalCasesData.map((caseData: any) => (
-              <CaseCard
-                key={caseData.caseNo}
-                caseName={caseData.caseName}
-                caseNo={caseData.caseNo}
-                status={caseData.status}
-                regdate={caseData.regdate}
-                client={caseData.client}
-                category={caseData.category}
-              />
-            ))}
-          </div> */}
+          <div>
+            <div className="text-sm">
+              In Johnson v. Acme Corp., the plaintiff, Emily Johnson, alleges
+              that Acme Corp. is responsible for damages resulting from a faulty
+              product. The case stems from an incident where the plaintiff
+              suffered injuries due to a malfunction of Acme’s home appliance,
+              which was purchased in 2022. Emily claims that the company failed
+              to adhere to safety standards, resulting in significant physical
+              harm and emotional distress. She is seeking compensation for
+              medical expenses, lost wages, and pain and suffering.
+            </div>
+
+            <div className="text-right flex items-center gap-2">
+              <span className="text-sm text-[#AEA6A6]">Reg Date</span>
+              <p className="font-medium">regdate</p>
+            </div>
+            <div className="text-right flex items-center gap-2">
+              <span className="text-sm text-[#AEA6A6]">Reg Date</span>
+              <p className="font-medium">regdate</p>
+            </div>
+            <div className="text-right flex items-center gap-2">
+              <span className="text-sm text-[#AEA6A6]">Reg Date</span>
+              <p className="font-medium">regdate</p>
+            </div>
+          </div>
         </main>
       </div>
     </div>
